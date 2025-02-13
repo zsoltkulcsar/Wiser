@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Wiser.Identity.Domain.Entities;
 using Wiser.Identity.Domain.Interfaces;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
 
 
 namespace Wiser.Identity.Api.Controllers
 {
-    public static class UserEndpoints
+    internal static class UserEndpoints
     {
         public static WebApplication AddUserEndpoints(this WebApplication webApplication)
         {
@@ -16,7 +13,8 @@ namespace Wiser.Identity.Api.Controllers
                 .RequireAuthorization()
                 .Produces<Guid>()
                 .WithTags(nameof(UserEndpoints))
-                .WithName(nameof(CreateUser)).WithOpenAi();
+                .WithName(nameof(CreateUser))
+                .WithOpenApi();
 
             return webApplication;
         }

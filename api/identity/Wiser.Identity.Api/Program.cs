@@ -1,5 +1,5 @@
-using Microsoft.AspNetCore.Builder;
 using Wiser.Common.Extensions;
+using Wiser.Identity.Api.Controllers;
 using Wiser.Identity.Domain;
 
 var builder = WebApplication.CreateBuilder(args);

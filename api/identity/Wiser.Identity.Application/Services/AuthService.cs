@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Identity.Data;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -10,6 +11,7 @@ namespace Wiser.Identity.Application.Services
 {
     public class AuthService
     {
+        private const string INVALID_EMAIL_PASSWORD = "Invalid email or password";
         private readonly IUserRepository _userRepository;
         private readonly IConfiguration _configuration;
 
@@ -27,7 +29,7 @@ namespace Wiser.Identity.Application.Services
 
             var passwordValid = await _userRepository.CheckPasswordAsync(user, request.Password);
             if (!passwordValid)
-                return (false, "Invalid email or password", null);
+                return (false, INVALID_EMAIL_PASSWORD, null);
 
             var token = GenerateJwtToken(user);
 

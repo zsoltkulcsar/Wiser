@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\common\Wiser.Common\Wiser.Common.csproj" />
     <ProjectReference Include="..\Wiser.Identity.Domain\Wiser.Identity.Domain.csproj" />
   </ItemGroup>
 

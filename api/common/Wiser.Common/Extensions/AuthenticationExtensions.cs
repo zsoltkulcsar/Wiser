@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using Wiser.Common.ConfigurationSections;
+using Wiser.Common.Security;
 
 namespace Wiser.Common.Extensions
 {
