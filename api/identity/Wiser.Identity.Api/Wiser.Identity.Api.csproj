@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>a0c4e925-cbb8-4868-844a-f986c3c6383c</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+    <PackageReference Include="NSwag.Core" Version="14.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\common\Wiser.Common\Wiser.Common.csproj" />
+    <ProjectReference Include="..\Wiser.Identity.Application\Wiser.Identity.Application.csproj" />
+    <ProjectReference Include="..\Wiser.Identity.Domain\Wiser.Identity.Domain.csproj" />
+    <ProjectReference Include="..\Wiser.Identity.Infrastructure\Wiser.Identity.Infrastructure.csproj" />
+    <ProjectReference Include="..\Wiser.Identity.Tests\Wiser.Identity.Tests.csproj" />
+  </ItemGroup>
+
+</Project>
