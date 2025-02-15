@@ -7,12 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.4.0" />
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\common\Wiser.Common\Wiser.Common.csproj" />
+    <ProjectReference Include="..\..\timeTracking\Wiser.TimeTracking.Repositories\Wiser.TimeTracking.Repositories.csproj" />
+    <ProjectReference Include="..\Wiser.Identity.CQRS.Contracts\Wiser.Identity.CQRS.Contracts.csproj" />
     <ProjectReference Include="..\Wiser.Identity.Domain\Wiser.Identity.Domain.csproj" />
+    <ProjectReference Include="..\Wiser.Identity.Repositories\Wiser.Identity.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

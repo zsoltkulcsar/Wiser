@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Wiser.Identity.Domain.Entities;
-using Wiser.Identity.Domain.Interfaces;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Wiser.Identity.Api.Utils;
+using Wiser.Identity.CQRS.Contracts.Users.Commands;
+using Wiser.Identity.CQRS.Handlers.Users.ExpressionFilters;
 
 
 namespace Wiser.Identity.Api.Controllers
@@ -19,27 +21,25 @@ namespace Wiser.Identity.Api.Controllers
             return webApplication;
         }
 
-        private static async Task<IResult> CreateUser(
-            IUserRepository userRepository,
-            IPasswordHasher<User> passwordHasher,
-            User createUserRequest)
+        private static async Task<IResult> CreateUser([FromServices] IMediator mediator, [AsParameters] CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var user = new User
+            var validator = new CreateUserCommandValidator();
+            var validationResult = await validator.ValidateAsync(CreateUserCommand.AddEmployeeDto, cancellationToken).ConfigureAwait(false);
+
+            if (!validationResult.IsValid)
             {
-                Name = createUserRequest.Name,
-                Email = createUserRequest.Email
-            };
-
-            user.Password = passwordHasher.HashPassword(user, createUserRequest.Password);
-
-            var result = await userRepository.CreateUserAsync(user, createUserRequest.Password);
-
-            if (result.Succeeded)
-            {
-                return Results.Ok(user.Id);
+                return Results.BadRequest(validationResult.Errors);
             }
 
-            return Results.BadRequest(new { Message = "Failed to create user" });
+            var createdUserId = await mediator.Send(CreateUserCommand, cancellationToken);
+
+            if (createdUserId is null)
+            {
+                return Results.Conflict();
+            }
+
+            string uri = $"/{RouteNameConstants.Users}/{createdUserId}";
+            return Results.Created(uri, createdUserId);
         }
     }
 }

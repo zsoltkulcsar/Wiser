@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Wiser.Common.Entities;
+﻿using Wiser.Common.Entities;
 
 namespace Wiser.Identity.Domain.Entities
 {

@@ -1,11 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using System.Data;
-using System.Reflection;
-using System.Security;
+using Wiser.Identity.DataAccess;
 using Wiser.Identity.Domain.Entities;
 
-namespace Wiser.Identity.Domain
+namespace Wiser.Identity.DataAcces
 {
     internal sealed class IdentityDbContext : DbContext, IIdentityDbContext
     {

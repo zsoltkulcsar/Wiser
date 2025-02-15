@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Wiser.Identity.Domain.Interfaces;
-using Wiser.Identity.Domain.Repositories;
-using Microsoft.EntityFrameworkCore;
+using Wiser.Identity.DataAcces;
+using Wiser.Identity.Repositories;
 
 
-namespace Wiser.Identity.Domain
+namespace Wiser.Identity.DataAccess
 {
     public static class DataAccessServicesRegistration
     {

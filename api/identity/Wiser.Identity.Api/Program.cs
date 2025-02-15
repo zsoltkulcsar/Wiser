@@ -1,6 +1,6 @@
 using Wiser.Common.Extensions;
 using Wiser.Identity.Api.Controllers;
-using Wiser.Identity.Domain;
+using Wiser.Identity.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
