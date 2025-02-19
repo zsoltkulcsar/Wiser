@@ -25,6 +25,7 @@
     <ProjectReference Include="..\..\common\Wiser.Common\Wiser.Common.csproj" />
     <ProjectReference Include="..\..\timeTracking\Wiser.TimeTracking.DataAcces\Wiser.TimeTracking.DataAcces.csproj" />
     <ProjectReference Include="..\Wiser.Identity.CQRS.Contracts\Wiser.Identity.CQRS.Contracts.csproj" />
+    <ProjectReference Include="..\Wiser.Identity.CQRS.Handlers\Wiser.Identity.CQRS.Handlers.csproj" />
     <ProjectReference Include="..\Wiser.Identity.DataAcces\Wiser.Identity.DataAcces.csproj" />
     <ProjectReference Include="..\Wiser.Identity.Domain\Wiser.Identity.Domain.csproj" />
     <ProjectReference Include="..\Wiser.Identity.Infrastructure\Wiser.Identity.Infrastructure.csproj" />

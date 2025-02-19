@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using System.Security.Cryptography.Xml;
 using Wiser.Common.Requests;
 using Wiser.Identity.CQRS.Contracts.Users.Commands;
 using Wiser.Identity.CQRS.Handlers.Users.Events;
@@ -24,7 +25,10 @@ namespace ITP.Identity.CQRS.Handlers.Users.Commands
 
         public async Task<IResult> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var user = _mapper.Map<User>(request);
+
+            var user = _mapper.Map<User>(request.AddUserDto);
+            user.Id = new Guid();
+
             await _userRepository.AddAsync(user, cancellationToken);
             await _mediator.Publish(new UserAddedEvent() { Id = user.Id, Name = user.Name }, cancellationToken);
 

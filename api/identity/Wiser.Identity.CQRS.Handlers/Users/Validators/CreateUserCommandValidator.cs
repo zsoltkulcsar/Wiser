@@ -1,9 +1,10 @@
 ﻿using FluentValidation;
 using Wiser.Identity.CQRS.Contracts.Users.Commands;
+using Wiser.Identity.CQRS.Contracts.Users.Dtos;
 
 namespace Wiser.Identity.CQRS.Contracts.Users.Validators
 {
-    public sealed class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
+    public sealed class CreateUserCommandValidator : AbstractValidator<AddUserDto>
     {
         public CreateUserCommandValidator()
         {

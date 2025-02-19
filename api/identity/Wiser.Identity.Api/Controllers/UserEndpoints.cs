@@ -12,7 +12,6 @@ namespace Wiser.Identity.Api.Controllers
         public static WebApplication AddUserEndpoints(this WebApplication webApplication)
         {
             webApplication.MapPost("/users", CreateUser)
-                .RequireAuthorization()
                 .Produces<Guid>()
                 .WithTags(nameof(UserEndpoints))
                 .WithName(nameof(CreateUser))
@@ -24,14 +23,14 @@ namespace Wiser.Identity.Api.Controllers
         private static async Task<IResult> CreateUser([FromServices] IMediator mediator, [AsParameters] CreateUserCommand request, CancellationToken cancellationToken)
         {
             var validator = new CreateUserCommandValidator();
-            var validationResult = await validator.ValidateAsync(CreateUserCommand.AddEmployeeDto, cancellationToken).ConfigureAwait(false);
+            var validationResult = await validator.ValidateAsync(request.AddUserDto, cancellationToken).ConfigureAwait(false);
 
             if (!validationResult.IsValid)
             {
                 return Results.BadRequest(validationResult.Errors);
             }
 
-            var createdUserId = await mediator.Send(CreateUserCommand, cancellationToken);
+            var createdUserId = await mediator.Send(request, cancellationToken);
 
             if (createdUserId is null)
             {
